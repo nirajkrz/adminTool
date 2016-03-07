@@ -1,0 +1,84 @@
+<form id="searchForm" name="search" ng-submit="searchScope.doSearch(1);">
+    <div class="searchContainer">
+        <div class="searchBox pull-left">
+            <input type="text" name="search" placeholder="User ID / Email ID" ng-model="searchText" ng-change="searchScope.updateSearchRequest(searchText);" class="full" />
+        </div>
+        <h5 class="pull-left"> OR </h5>
+        <input type="file" name="xlfile" id="xlf" class="pull-left custom-file-input fileField" onchange="angular.element(this).scope().searchScope.fileChanged(this.files);">
+        <h6 class="pull-left mlm">{{fileName}}</h6>
+        <div class="buttonContainer pull-right">
+            <button class="btn btn-xs btn-primary full" type="sumbit" title="">Submit</button>
+        </div>
+        <span class="clearfix"></span>
+    </div>
+</form>
+<div class="resultsContent" ng-if="users.length > 0">
+    <div class="contentHeader">
+        <div class="heading results">Search Results</div>
+        <ul class="pull-right menu">
+            <li><a href='javascript:void(0);' ng-click="searchScope.openMultiEditStatusModal();" ><span class="icon edit"></span><span class="title">Edit</span></a></li>
+        </ul>
+        <div class="clearfix"></div>
+    </div>
+
+    <ul class="pager" ng-if="pageCount>1">
+        <li class="previous" ng-class="{disabled:currentPage === 1}">
+            <span ng-if="currentPage === 1">&larr; Previous</span>
+            <a href="javascript:void(0);" ng-if="currentPage != 1" ng-click="searchScope.doSearch(currentPage - 1);">&larr; Previous</a>
+        </li>
+        <li> Showing Page {{currentPage}} of {{pageCount}}</li>
+        <li class="next" ng-class="{disabled: currentPage === pageCount}">
+            <span ng-if="currentPage === pageCount">&rarr; Next</span>
+            <a href="javascript:void(0);" ng-if="currentPage != pageCount" ng-click="searchScope.doSearch(currentPage + 1);">&rarr; Next</a>
+        </li>
+    </ul>
+
+    <table class="table table-striped ">
+        <thead>
+            <tr>
+                <th>
+                    <input type="checkbox" ng-model="selectedAll" ng-change="searchScope.checkAll(selectedAll)" />
+                </th>
+                <th>User ID</th>
+                <th>Name</th>
+                <th>Email ID</th>
+                <th>Loyality No</th>
+                <th>Status</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="user in users">
+                <th>
+                    <input type="checkbox" ng-model="user.selected" ng-init="user.selected = false;" />
+                </th>
+                <td>{{user.id}}</td>
+                <td>{{user.name.first}} {{user.name.last}}</td>
+                <td>{{user.userLogonName}}</td>
+                <td>{{user.loyaltys.loyaltyList[0].number}}</td>
+                <td>
+                    <span class="status" ng-class="user.userState">{{status[user.userState].label}}</span>
+                    <!-- <div class="btn-group">
+    						<button class="btn btn-xs btn-default" type="button" tooltip="Edit Status" title="" data-original-title="Edit Status" ng-click="searchScope.openEditStatusModal(user.id, status[user.userState].code);"><i class="icon-pencil"></i></button>
+    					</div> -->
+                </td>
+                <td>
+                    <div class="btn-group">
+                        <button class="btn btn-xs btn-default" type="button" title="" data-original-title="View Address" ng-click="searchScope.viewAddress(user.id);"><i class="icon-road"></i> View Address</button>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <ul class="pager" ng-if="pageCount>1">
+        <li class="previous" ng-class="{disabled:currentPage === 1}">
+            <span ng-if="currentPage === 1">&larr; Previous</span>
+            <a href="javascript:void(0);" ng-if="currentPage != 1" ng-click="searchScope.doSearch(currentPage - 1);">&larr; Previous</a>
+        </li>
+        <li> Showing Page {{currentPage}} of {{pageCount}}</li>
+        <li class="next" ng-class="{disabled: currentPage === pageCount}">
+            <span ng-if="currentPage === pageCount">&rarr; Next</span>
+            <a href="javascript:void(0);" ng-if="currentPage != pageCount" ng-click="searchScope.doSearch(currentPage + 1);">&rarr; Next</a>
+        </li>
+    </ul>
+</div>

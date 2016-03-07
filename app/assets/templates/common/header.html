@@ -1,0 +1,17 @@
+<div ng-if="showHeader();">
+    <h2 class="pull-left">Profile Admin Tool</h3>
+	<button type="button" class="btn btn-default pull-right mlm" ng-click="doLogout();"><span class="icon-off"></span> Logout</button>
+	<!-- Split button -->
+	<div class="dropdown pull-right mlm">
+	    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown"><span class="icon-cog"></span>Select DB
+	    <span class="caret"></span></button>
+	    <ul class="dropdown-menu">
+	      <li ng-repeat="action in actions">
+            <a href="#" ng-click="setAction(action)">{{action.name}}</a>
+          </li>
+	    </ul>
+   </div>
+
+	<div class="clearfix"></div>
+    <alert type="alert.type" ng-if="alert.showMessage" class="mtm mbm animationFade" ><strong>{{alert.msg}}</strong></alert>
+</div>

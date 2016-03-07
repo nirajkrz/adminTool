@@ -1,0 +1,17 @@
+<div class="modal-header">
+    <h3 class="modal-title text-center">Address</h3>
+</div>
+<div class="modal-body">
+    <div class="addresslist">
+        <address ng-repeat="address in addressList">
+            <strong>{{address.name.first}} {{address.name.last}}</strong><br>
+            {{address.address1}}<br>
+            <span ng-if="address.address2 != ''">{{address.address2}}</span>
+            {{address.city}}, {{address.state}} {{address.zipcode}}<br>
+            <abbr title="Phone">Phone:</abbr> {{address.phones.phoneList[0].number}}
+        </address>
+    </div>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-warning" ng-click="close()">Close</button>
+</div>

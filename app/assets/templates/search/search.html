@@ -1,0 +1,21 @@
+<!-- <div class="pageHeader">Search</div> -->
+<div class="pageContent">
+
+	<tabset justified="true">
+	    <tab heading="Search">
+	    	<div ng-include="'templates/search/searchTabContent.html'" ></div>
+	    </tab>
+	    <tab heading="Circuit-Breaker">
+	    	<div ng-include="'templates/circuitbreaker/circuitbreakerTabContent.html'"></div>
+	    </tab>
+	     <tab heading="Metadata-Factory">
+	    	<div ng-include="'templates/metadatafactory/metadataTabContent.html'"></div>
+	    </tab>
+  	</tabset>
+
+</div>
+<!-- <form action="" method="post" enctype="multipart/form-data">
+	<input type="file" name="xlfile" id="xlf" onchange="angular.element(this).scope().fileChanged(this.files);">
+	<input type="button" id="dotext" value="XLSX to JSON" onclick="searchScope.b64it();">
+	<div >{{sheets}}</div>
+</form> -->

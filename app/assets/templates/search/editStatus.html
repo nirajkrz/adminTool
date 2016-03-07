@@ -1,0 +1,20 @@
+<div class="modal-header">
+    <h3 class="modal-title">Edit Status</h3>
+</div>
+<div class="modal-body">
+
+    <form ng-submit="ok();">
+        <div class="form-group">
+            <label for="exampleInputEmail1">Status</label>
+            <select name="userStatus" ng-model="request.currentStatus">
+                <option value="">-Select-</option>
+                <option value="active">Active</option>
+                <option value="inactive">Inactive</option>
+            </select>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" ng-click="ok()">OK</button>
+    <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+</div>
